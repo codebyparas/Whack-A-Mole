@@ -17,3 +17,10 @@ body{
     display: flex;
     flex-wrap: wrap;
 }
+
+#board div{
+    width: 180px;
+    height: 180px;
+    background: url("./pipe.png");
+    background-size: cover;
+}
