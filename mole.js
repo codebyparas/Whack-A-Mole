@@ -1,5 +1,7 @@
 let currMoleTile;
 let currPlantTile;
+let score=0;
+let gameOver=false;
 
 window.onload = function(){
     setGame();
@@ -8,9 +10,10 @@ window.onload = function(){
 function setGame(){
     // Set up the Grid for the Game Board in HTML
     for(let i=0;i<9;i++){
-        let title=document.createElement("div");
-        title.id=i.toString();
-        document.getElementById("board").appendChild(title);
+        let tile=document.createElement("div");
+        tile.id=i.toString();
+        tile.addEventListener("click",selectTile);
+        document.getElementById("board").appendChild(tile);
     }
 
     setInterval(setMole, 1000);  // 1000 milliseconds = 1 seconds
@@ -28,6 +31,7 @@ function setMole(){
     if(currMoleTile){
         currMoleTile.innerHTML="";
     }
+
     let mole = document.createElement("img");
     mole.src = "./monty-mole.png";
 
@@ -57,7 +61,17 @@ function setPlant(){
     if(currMoleTile && currMoleTile.id==num){
         return;
     }
-    
+
     currPlantTile=document.getElementById(num);
     currPlantTile.appendChild(plant);
+}
+
+function selectTile(){
+    if(this==currMoleTile){
+        score+=10;
+        document.getElementById("score").innerText=score.toString();  // Update Score
+    }else if(this==currPlantTile){
+        document.getElementById("score").innerText="GAME OVER: "+ score.toString();
+        gameOver=true;
+    }
 }
