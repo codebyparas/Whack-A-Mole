@@ -24,6 +24,7 @@ function getRandomTile(){
 }
 
 function setMole(){
+    // Remove Previous Mole
     if(currMoleTile){
         currMoleTile.innerHTML="";
     }
@@ -31,11 +32,18 @@ function setMole(){
     mole.src = "./monty-mole.png";
 
     let num = getRandomTile();
+
+    // Check if Plant is on Same Tile
+    if(currPlantTile && currPlantTile.id==num){
+        return;
+    }
+
     currMoleTile = document.getElementById(num);
     currMoleTile.appendChild(mole);
 }
 
 function setPlant(){
+    // Remove Previous Plant
     if(currPlantTile){
         currPlantTile.innerHTML="";
     }
@@ -44,6 +52,12 @@ function setPlant(){
     plant.src="./piranha-plant.png";
 
     let num=getRandomTile();
+
+    // Check if Mole is on Same Tile
+    if(currMoleTile && currMoleTile.id==num){
+        return;
+    }
+    
     currPlantTile=document.getElementById(num);
     currPlantTile.appendChild(plant);
 }
