@@ -27,6 +27,10 @@ function getRandomTile(){
 }
 
 function setMole(){
+    if(gameOver){
+        return;
+    }
+
     // Remove Previous Mole
     if(currMoleTile){
         currMoleTile.innerHTML="";
@@ -47,6 +51,10 @@ function setMole(){
 }
 
 function setPlant(){
+    if(gameOver){
+        return;
+    }
+
     // Remove Previous Plant
     if(currPlantTile){
         currPlantTile.innerHTML="";
@@ -67,6 +75,9 @@ function setPlant(){
 }
 
 function selectTile(){
+    if(gameOver){
+        return;
+    }
     if(this==currMoleTile){
         score+=10;
         document.getElementById("score").innerText=score.toString();  // Update Score
